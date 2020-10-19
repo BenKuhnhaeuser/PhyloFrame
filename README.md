@@ -52,8 +52,11 @@ This was conducted both before and after trimming
 
 ## 6. Multiple sequence alignment
 ### Align genes individually
-'''mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
+```mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
+- use same command for supercontigs
 
 ### Trim alignments
--
+1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction:\
+```trimal -in Gene1_aligned.fasta -out Gene1_trimmed_sites.fasta -automated1```
+2)
 
