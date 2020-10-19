@@ -31,5 +31,13 @@ Get sequence lengths for taxa in "calamuslist.txt":\
 Compute statistics on retrieved genes per taxon in "calamuslist.txt":\
 ```python HybPiper/hybpiper_stats.py seqlengths_genes.txt calamuslist.txt > seqlengths_genes_stats.txt```
 
-
+## 5. Identify paralogs
+Write paralogs to individual file:\
+```python HybPiper/paralog_investigator.py Calamus 2> Calamus_paralogs.txt``` 
+Combine paralog files of different sequences:\
+```cat *paralogs.txt > paralog_summary.txt``` 
+Return each occurrence of genes starting with HEY or EGU (as all genes in the target file do):\
+```grep -ow 'HEY\w*\|EGU\w*' paralog_summary.txt > paralog_temp.txt```
+Count number of each word in the given file - this is the final paralog count:\
+```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt``` 
 
