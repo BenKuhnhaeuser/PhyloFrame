@@ -41,11 +41,16 @@ This was conducted both before and after trimming
 
 ## 6. Exclude paralogs from analysis
 ### Identify paralogs
-```python HybPiper/paralog_investigator.py Calamoid1 2> Calamoid1_paralogs.txt``` writes paralogs to individual file for the taxon\
-```cat *paralogs.txt > paralog_summary.txt``` combines paralog files of different sequences\
-```grep -ow 'HEY\w*\|EGU\w*' paralog_summary.txt > paralog_temp.txt``` returns each occurrence of genes starting with HEY or EGU (as all genes in the target file do)\
-```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt``` counts the number of occurrences per paralog\
-```grep -ow 'HEY\w*\|EGU\w*' paralog_count.txt > paralogs.txt``` produces final list of paralogs
+1) Write paralogs to individual file for the taxon\
+```python HybPiper/paralog_investigator.py Calamoid1 2> Calamoid1_paralogs.txt```\
+2) Combine paralog files of different sequences\
+```cat *paralogs.txt > paralog_summary.txt```\
+3) Return each occurrence of genes starting with HEY or EGU (as all genes in the PhyloPalms.fasta do)\
+```grep -ow 'HEY\w*\|EGU\w*' paralog_summary.txt > paralog_temp.txt``` 
+4) Count number of occurrences per paralog\
+```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt``` 
+5) Produce final list of paralogs
+```grep -ow 'HEY\w*\|EGU\w*' paralog_count.txt > paralogs.txt``` 
 
 ### Make ortholog list (= genes - paralogs)
 ```grep -Fv -f paralogs.txt genenames.txt > orthologs.txt``` creates new ortholog list excluding paralogs
@@ -58,5 +63,5 @@ This was conducted both before and after trimming
 ### Trim alignments
 1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction:\
 ```trimal -in Gene1_aligned.fasta -out Gene1_trimmed_sites.fasta -automated1```
-2)
+2) 
 
