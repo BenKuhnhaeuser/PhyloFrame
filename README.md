@@ -42,14 +42,14 @@ This was conducted both before and after trimming
 ## 6. Exclude paralogs from analysis
 ### Identify paralogs
 1) Write paralogs to individual file for the taxon\
-```python HybPiper/paralog_investigator.py Calamoid1 2> Calamoid1_paralogs.txt```\
+```python HybPiper/paralog_investigator.py Calamoid1 2> Calamoid1_paralogs.txt```
 2) Combine paralog files of different sequences\
-```cat *paralogs.txt > paralog_summary.txt```\
+```cat *paralogs.txt > paralog_summary.txt```
 3) Return each occurrence of genes starting with HEY or EGU (as all genes in the PhyloPalms.fasta do)\
 ```grep -ow 'HEY\w*\|EGU\w*' paralog_summary.txt > paralog_temp.txt``` 
 4) Count number of occurrences per paralog\
-```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt``` 
-5) Produce final list of paralogs
+```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt```
+5) Produce final list of paralogs\
 ```grep -ow 'HEY\w*\|EGU\w*' paralog_count.txt > paralogs.txt``` 
 
 ### Make ortholog list (= genes - paralogs)
