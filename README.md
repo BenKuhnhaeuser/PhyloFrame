@@ -17,14 +17,14 @@ This was conducted both before and after trimming
 - ```MINLEN``` sets minimum allowed length for reads
 
 ## 3. Retrieve targeted exons
-1) Retrieve exons per taxon
+1) Retrieve exons per taxon\
 ```python HybPiper/reads_first.py -b PhyloPalms.fasta -r Calamoid1_R*Tpaired.fastq --prefix $name --bwa --cov_cutoff 3```
 - ```-b PhyloPalms.fasta``` specifies target file
 - ```--bwa``` uses BWA to map reads to target file
 - ```--cov_cutoff``` specifes minimum coverage of SPADES contigs
-2) Compile gene files containing homologous sequences across all taxa
+2) Compile gene files containing homologous sequences across all taxa\
 ```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . dna```
-3) Produce exon list
+3) Produce exon list\
 ```for f in *.FNA; do (echo ${f/.FNA} >> genenames.txt); done```
 
 ## 4. Compute statistics for retrieval of exons
@@ -33,11 +33,11 @@ This was conducted both before and after trimming
 - "namelist.txt" contains taxon names
 
 ## 5. Retrieve supercontigs
-1) Retrieve introns
+1) Retrieve introns\
 ```python HybPiper/intronerate.py --prefix Calamoid1```\
 ```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . intron```
 
-2) Retrieve supercontigs (combining exons and introns)
+2) Retrieve supercontigs (combining exons and introns)\
 ```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . supercontig```
 
 ## 6. Exclude paralogs from analysis
