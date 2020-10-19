@@ -20,11 +20,9 @@ Explanations:\
 
 ## 3. Retrieval of targeted genes using Hybpiper
 ```HybPiper/reads_first.py -b PhyloPalms.fasta -r Calamus_R*Tpaired.fastq --prefix $name --bwa --cov_cutoff 3```
-
-Explanations:
-```-b PhyloPalms.fasta``` specifies target file\
-```--bwa``` uses BWA to map reads to target file\
-```--cov_cutoff``` specifes minimum coverage of SPADES contigs
+- ```-b PhyloPalms.fasta``` specifies target file\
+- ```--bwa``` uses BWA to map reads to target file\
+- ```--cov_cutoff``` specifes minimum coverage of SPADES contigs
 
 
 
