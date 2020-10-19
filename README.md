@@ -56,13 +56,17 @@ This was conducted both before and after trimming
 ### Make ortholog list (= genes - paralogs)
 ```grep -Fv -f paralogs.txt genenames.txt > orthologs.txt``` creates new ortholog list excluding paralogs
 
-## 6. Multiple sequence alignment
+## 7. Multiple sequence alignment
 ### Align genes individually
 ```mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
 - use same command for supercontigs
 
 ### Trim alignments
 1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction:\
-```trimal -in Gene1_aligned.fasta -out Gene1_trimmed_sites.fasta -automated1```
-2) 
+```trimal -in Gene1_aligned.fasta -out Gene1_aligned_trimmed_temp1.fasta -automated1```
+2) Remove sites with >=80% gaps from automated1-trimmed alignment\
+```trimal -in Gene1_aligned_trimmed_temp1.fasta -out Gene1_aligned_trimmed_temp2.fasta -gt 0.2```
+3) Remove sequences covering less than 10 % of the alignment length\
+```trimal -in Gene1_aligned_trimmed_temp2.fasta -out Gene1_aligned_trimmed.fasta -resoverlap 0.50 -seqoverlap 10```
+
 
