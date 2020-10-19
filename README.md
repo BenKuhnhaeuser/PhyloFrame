@@ -69,4 +69,10 @@ This was conducted both before and after trimming
 3) Remove sequences covering less than 10 % of the alignment length\
 ```trimal -in Gene1_aligned_trimmed_temp2.fasta -out Gene1_aligned_trimmed.fasta -resoverlap 0.50 -seqoverlap 10```
 
+### Removal of uninformative orthologs 
+The following alignments were excluded after visual inspection using Geneious:
+- empty: HEY111
+- sequences only for outgroup: HEY363, EGU105041872, EGU105055023
+- only 3 ingroup sequences (+4 outgroup seq), few informative sites: HEY168
+
 
