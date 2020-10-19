@@ -16,7 +16,7 @@ This was conducted both before and after trimming
 - ```MAXINFO``` balances benefits of retaining longer reads against costs of retaining bases with errors
 - ```MINLEN``` sets minimum allowed length for reads
 
-## 3. Retrieve targeted genes
+## 3. Retrieve exons
 ```python HybPiper/reads_first.py -b PhyloPalms.fasta -r Calamus_R*Tpaired.fastq --prefix $name --bwa --cov_cutoff 3```
 - ```-b PhyloPalms.fasta``` specifies target file
 - ```--bwa``` uses BWA to map reads to target file
@@ -24,18 +24,25 @@ This was conducted both before and after trimming
 
 ```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . dna``` to compile one file per gene containing homologous sequences across all taxa
 
-## 4. Sequencing statistics
-Get sequence lengths for taxa in "calamuslist.txt":\
-```python HybPiper/get_seq_lengths.py PhyloPalms.fasta calamuslist.txt dna > seqlengths_genes.txt```
+```for f in *.FNA; do (echo ${f/.FNA} >> genenames.txt); done``` produces list of exons
 
-Compute statistics on retrieved genes per taxon in "calamuslist.txt":\
-```python HybPiper/hybpiper_stats.py seqlengths_genes.txt calamuslist.txt > seqlengths_genes_stats.txt```
+## 4. Compute statistics for sequencing success
+```python HybPiper/get_seq_lengths.py PhyloPalms.fasta namelist.txt dna > seqlengths_genes.txt```\
+```python HybPiper/hybpiper_stats.py seqlengths_genes.txt namelist.txt > seqlengths_genes_stats.txt```
+- "namelist.txt" contains taxon names
 
-## 5. Identify paralogs
+## 5. Remove paralogs
+
+### Identify paralogs
 ```python HybPiper/paralog_investigator.py Calamus 2> Calamus_paralogs.txt``` writes paralogs to individual file for the taxon\
 ```cat *paralogs.txt > paralog_summary.txt``` combines paralog files of different sequences\
 ```grep -ow 'HEY\w*\|EGU\w*' paralog_summary.txt > paralog_temp.txt``` returns each occurrence of genes starting with HEY or EGU (as all genes in the target file do)\
-```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt``` counts the number of occurrences per paralog
+```tr -c '[:alnum:]' '[\n*]' < paralogs_temp.txt | sort | uniq -c | sort -nr > paralog_count.txt``` counts the number of occurrences per paralog\
+```grep -ow 'HEY\w*\|EGU\w*' paralog_count.txt > paralogs.txt``` produces final list of paralogs
 
+### Make ortholog list (= genes - paralogs)
+```grep -Fv -f paralogs.txt genenames.txt > orthologs.txt``` creates new ortholog list excluding paralogs
+
+## 6.
 
 
