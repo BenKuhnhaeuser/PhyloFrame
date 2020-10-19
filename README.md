@@ -6,8 +6,8 @@ Notes:
 - Exemplary workflow for taxon "Calamoid1" and gene "Gene1"
 
 ## 1. Quality control of sequence data
-```fastqc Calamoid1_*.fastq --extract``` produces files for visual inspection\
-This was conducted both before and after trimming
+```fastqc Calamoid1_R*_001.fastq --extract``` produces files for visual inspection\
+- Conduct before and after trimming
 
 ## 2. Remove adapters and low-quality reads
 ```java -jar trimmomatic-0.38.jar PE -threads 16 -phred33 -basein Calamoid1_R1_001.fastq Calamoid1_R1_001_Tpaired.fastq Calamoid1_R1_001_Tunpaired.fastq Calamoid1_R2_001_Tpaired.fastq Calamoid1_R2_001_Tunpaired.fastq ILLUMINACLIP:Trimmomatic-0.38/adapters/TruSeq3-PE-2.fa:2:30:10:1:true LEADING:3 TRAILING:3 MAXINFO:40:0.8 MINLEN:36```
@@ -18,27 +18,27 @@ This was conducted both before and after trimming
 
 ## 3. Retrieve targeted exons
 1) Retrieve exons per taxon\
-```python HybPiper/reads_first.py -b PhyloPalms.fasta -r Calamoid1_R*Tpaired.fastq --prefix $name --bwa --cov_cutoff 3```
+```python HybPiper/reads_first.py -b PhyloPalm.fasta -r Calamoid1_R*Tpaired.fastq --prefix $name --bwa --cov_cutoff 3```
 - ```-b PhyloPalms.fasta``` specifies target file
 - ```--bwa``` uses BWA to map reads to target file
 - ```--cov_cutoff``` specifes minimum coverage of SPADES contigs
 2) Compile gene files containing homologous sequences across all taxa\
-```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . dna```
+```python HybPiper/retrieve_sequences.py PhyloPalm.fasta . dna```
 3) Produce exon list\
 ```for f in *.FNA; do (echo ${f/.FNA} >> genenames.txt); done```
 
 ## 4. Compute statistics for retrieval of exons
-```python HybPiper/get_seq_lengths.py PhyloPalms.fasta namelist.txt dna > seqlengths_genes.txt```\
+```python HybPiper/get_seq_lengths.py PhyloPalm.fasta namelist.txt dna > seqlengths_genes.txt```\
 ```python HybPiper/hybpiper_stats.py seqlengths_genes.txt namelist.txt > seqlengths_genes_stats.txt```
 - "namelist.txt" contains taxon names
 
 ## 5. Retrieve supercontigs
 1) Retrieve introns\
 ```python HybPiper/intronerate.py --prefix Calamoid1```\
-```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . intron```
+```python HybPiper/retrieve_sequences.py PhyloPalm.fasta . intron```
 
 2) Retrieve supercontigs (combining exons and introns)\
-```python HybPiper/retrieve_sequences.py PhyloPalms.fasta . supercontig```
+```python HybPiper/retrieve_sequences.py PhyloPalm.fasta . supercontig```
 
 ## 6. Exclude paralogs from analysis
 ### Identify paralogs
@@ -75,4 +75,13 @@ The following alignments were excluded after visual inspection using Geneious:
 - sequences only for outgroup: HEY363, EGU105041872, EGU105055023
 - only 3 ingroup sequences (+4 outgroup seq), few informative sites: HEY168
 
+## 8. Gene trees
 
+## 9. Species trees
+### Coalescence
+
+### Concatenation
+
+## 10. Rooting the tree
+
+## 11. Comparative analyses
