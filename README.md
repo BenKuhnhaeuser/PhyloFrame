@@ -96,7 +96,7 @@ The following alignments were excluded after visual inspection using Geneious:
 
 ## 10. Comparative analyses
 ### Tree comparisons
-Load R libraries:
+Load R libraries:\
 ```library(ape)```\
 ```library(phangorn)```
 Read in trees:\
