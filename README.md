@@ -3,7 +3,8 @@ Code for phylogenomic analyses in Kuhnhäuser et al. 2020 "A robust phylogenomic
 
 Notes:
 - Software versions are specified in the methods section of the paper
-- Exemplary workflow for taxon "Calamoid1" and gene "Gene1"
+- Exemplary workflow for taxon "Calamoid1" and exon "Gene1"
+- Identical parameters used for exons and supercontigs
 
 ## 1. Quality control of sequence data
 ```fastqc Calamoid1_R*_001.fastq --extract``` produces files for visual inspection\
@@ -59,7 +60,6 @@ Notes:
 ## 7. Multiple sequence alignment
 ### Align genes individually
 ```mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
-- use same parameters for supercontigs
 
 ### Trim alignments
 1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction:\
@@ -77,7 +77,6 @@ The following alignments were excluded after visual inspection using Geneious:
 
 ## 8. Gene trees
 ```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# 100 -k -s Gene1_aligned_trimmed.fasta -n Gene1.tree```
-- use same parameters for supercontigs
 
 ## 9. Species trees
 ### Coalescence
@@ -91,7 +90,8 @@ The following alignments were excluded after visual inspection using Geneious:
 ```java -jar astral.5.6.3.jar -i allTrees_ts_bs10.tree -o astral_ts_bs10.tree```
 
 ### Concatenation
-1) 
+1) Concatenate individual gene alignments
+```AMAS concat -i *_.fasta -f fasta -d dna -c 1```
 
 ## 10. Rooting the tree
 
