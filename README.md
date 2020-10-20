@@ -81,8 +81,17 @@ The following alignments were excluded after visual inspection using Geneious:
 
 ## 9. Species trees
 ### Coalescence
+1) Concatenate trees\
+```cat RAxML_bipartitions.Gene*.tree > allTrees.tree```
+2) Remove outlier branches\
+```run_treeshrink.py -t allTrees.tree -q 0.05```
+3) Collapse branches with bootstrap support below 10%\
+```nw_ed allTrees_ts.tree 'i & b<=10' o > allTrees_ts_bs10.tree```
+4) Build coalescences species tree\
+```java -jar astral.5.6.3.jar -i allTrees_ts_bs10.tree -o astral_ts_bs10.tree```
 
 ### Concatenation
+1) 
 
 ## 10. Rooting the tree
 
