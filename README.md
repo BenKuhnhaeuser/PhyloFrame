@@ -91,10 +91,10 @@ The following alignments were excluded after visual inspection using Geneious:
 ```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
 2) Build concatenated species tree\
 ```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# autoMRE -k -s concatenated.out -n raxml_concatenated.tree```
-3) Root the tree
+3) Root the tree\
 ```pxrr -t raxml_concatenated.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > raxml_concatenated_rooted.tree```
 
-## 10 Comparative analyses
+## 10. Comparative analyses
 ### Tree comparisons
 Load R libraries:
 ```library(ape)```\
