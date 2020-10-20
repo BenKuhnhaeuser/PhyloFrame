@@ -59,7 +59,7 @@ Notes:
 ## 7. Multiple sequence alignment
 ### Align genes individually
 ```mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
-- use same command for supercontigs
+- use same parameters for supercontigs
 
 ### Trim alignments
 1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction:\
@@ -69,13 +69,15 @@ Notes:
 3) Remove sequences covering less than 10 % of the alignment length\
 ```trimal -in Gene1_aligned_trimmed_temp2.fasta -out Gene1_aligned_trimmed.fasta -resoverlap 0.50 -seqoverlap 10```
 
-### Removal of uninformative orthologs 
+### Remove uninformative orthologs 
 The following alignments were excluded after visual inspection using Geneious:
 - empty: HEY111
 - sequences only for outgroup: HEY363, EGU105041872, EGU105055023
 - only 3 ingroup sequences (+4 outgroup seq), few informative sites: HEY168
 
 ## 8. Gene trees
+```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# 100 -k -s Gene1_aligned_trimmed.fasta -n Gene1.tree```
+- use same parameters for supercontigs
 
 ## 9. Species trees
 ### Coalescence
