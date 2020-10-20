@@ -28,11 +28,6 @@ Notes:
 3) Produce exon list\
 ```for f in *.FNA; do (echo ${f/.FNA} >> genenames.txt); done```
 
-## 4. Compute statistics for retrieval of exons
-```python HybPiper/get_seq_lengths.py PhyloPalm.fasta namelist.txt dna > seqlengths_genes.txt```\
-```python HybPiper/hybpiper_stats.py seqlengths_genes.txt namelist.txt > seqlengths_genes_stats.txt```
-- "namelist.txt" contains taxon names
-
 ## 5. Retrieve supercontigs
 1) Retrieve introns\
 ```python HybPiper/intronerate.py --prefix Calamoid1```\
@@ -99,4 +94,15 @@ The following alignments were excluded after visual inspection using Geneious:
 ```pxrr -t astral.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > astral_rooted.tree```
 - same arguments for concatenated species tree
 
-## 11. Comparative analyses
+## 11. Statistics
+### Targeted sequencing
+```python HybPiper/get_seq_lengths.py PhyloPalm.fasta namelist.txt dna > seqlengths_genes.txt```\
+```python HybPiper/hybpiper_stats.py seqlengths_genes.txt namelist.txt > seqlengths_genes_stats.txt```
+- "namelist.txt" contains taxon names
+
+### Alignment summary statistics
+```AMAS summary -f fasta -d dna -i alignment_genes_concatenated.out -o summary_alignment_genes_concatenated.txt```
+- For ingroup only: remove outgroup from concatenated alignment
+```AMAS remove -x Asterogyne-martiana-SBL226 Kerriodoxa-elegans-MSL76 Nypa-fructicans-MSL30-S32 Ceroxylon-quindiuense-MSL17 -f fasta -d dna -i alignment_genes_concatenated.out```
+- For outgroup only: remove ingroup
+```AMAS remove -x Mauritia-carana-BKL072 Raphia-hookeri-BKL088 Raphia-monbuttorum-BKL090 Raphia-textilis-BKL085 Calamus-rheedei-BKL065 Plectocomiopsis-sp-nov-discolor-RBL178 Mauritiella-aculeata-BKL010 Calamus-calospathus-BKL011 Lepidocaryum-tenue-MSL75-S14 Oncocalamus-mannii-BKL080 Myrialepis-paradoxa-BKL015 Calamus-discolor-RBL122 Raphia-farinifera-MSL20-S18 Metroxylon-sagu-MSL36-S19 Eleiodoxa-conferta-MSL73-S5 Plectocomia-elongata-RBL210 Salacca-lophospatha-BKL250 Raphia-regalis-BKL061 Calamus-radiatus-BKL176 Plectocomiopsis-geminiflora-MSL74 Calamus-peregrinus-BKL057 Plectocomia-himalayana-BKL078 Mauritiella-armata-SBL558 Eugeissona-tristis-MSL52-S20 Calamus-ornatus-BKL092 Plectocomiopsis-mira-RBL352 Mauritia-flexuosa-MSL70 Calamus-ursinus-BKL042 Calamus-essigii-RBL130 Korthalsia-rostrata-RBL177 Laccosperma-opacum-MSL50 Pigafetta-filaris-MSL77-S28 Calamus-erectus-BKL037 Calamus-ciliaris-BKL028 Calamus-symphysipus-RBL089 Calamus-thysanolepis-BKL160 Eremospatha-laurentii-BKL002 Calamus-pedicellatus-RBL031 Eremospatha-wendlandiana-BKL087 Calamus-conirostris-RBL214 Calamus-zollingeri-RBL145 Calamus-aruensis-RBL231 Salacca-zalacca-BKL003 Calamus-subinermis-BKL018 Calamus-wailong-RBL021 Calamus-arborescens-RBL069 Calamus-harmandii-BKL025 Oncocalamus-tuleyi-BKL016 Raphia-sudanica-BKL044 Calamus-vitiensis-RBL211 Calamus-blumei-RBL084 Calamus-pseudoconcolor-RBL081 Calamus-usitatus-BKL019 Calamus-koordersianus-BKL031 Calamus-acanthophyllus-BKL024 Calamus-dumetosus-RBL215 Calamus-melanochaetes-RBL238 Calamus-pogonacanthus-BKL048 Calamus-rhabdocladus-RBL032 Korthalsia-jala-BKL014 Eugeissona-utilis-BKL081 Calamus-godefroyi-BKL128 Salacca-affinis-BKL055 Calamus-oxleyanus-BKL033 Calamus-compsostachys-RBL028 Laccosperma-secundiflorum-RBL066 Calamus-castaneus-RBL220 Korthalsia-rigida-RBL038 Calamus-acanthochlamys-RBL017 Pigafetta-elata-BKL084 Calamus-sabut-RBL024 Salacca-secunda-BKL077 Metroxylon-salomonense-BKL060 Calamus-deerratus-RBL242 Korthalsia-robusta-BKL083 -f fasta -d dna -i alignment_genes_concatenated.out```
