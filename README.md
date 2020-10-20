@@ -86,13 +86,17 @@ The following alignments were excluded after visual inspection using Geneious:
 ```run_treeshrink.py -t allTrees.tree -q 0.05```
 3) Collapse branches with bootstrap support below 10%\
 ```nw_ed allTrees_ts.tree 'i & b<=10' o > allTrees_ts_bs10.tree```
-4) Build coalescences species tree\
-```java -jar astral.5.6.3.jar -i allTrees_ts_bs10.tree -o astral_ts_bs10.tree```
+4) Build coalescence species tree\
+```java -jar astral.5.6.3.jar -i allTrees_ts_bs10.tree -o astral.tree```
 
 ### Concatenation
-1) Concatenate individual gene alignments
-```AMAS concat -i *_.fasta -f fasta -d dna -c 1```
+1) Concatenate individual gene alignments\
+```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
+2) Build concatenated species tree\
+```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# autoMRE -k -s concatenated.out -n raxml_concatenated.tree```
 
-## 10. Rooting the tree
+## 10. Rooting the species trees
+```pxrr -t astral.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > astral_rooted.tree```
+- same arguments for concatenated species tree
 
 ## 11. Comparative analyses
