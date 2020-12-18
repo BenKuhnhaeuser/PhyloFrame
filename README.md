@@ -6,7 +6,7 @@ Notes:
 - Identical parameters used for exons and supercontigs
 
 ## 1. Quality control of sequence data
-```fastqc Calamoid1_R*_001.fastq --extract``` produces files for visual inspection\
+```fastqc Calamoid1_R*_001.fastq --extract```
 - Conduct before and after trimming
 
 ## 2. Remove adapters and low-quality reads
