@@ -70,8 +70,11 @@ The following alignments were excluded after visual inspection using Geneious:
 - only 3 ingroup sequences (+4 outgroup seq), few informative sites: HEY168
 
 ## 8. Gene trees
+Without model testing:\
 ```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# 100 -k -s Gene1_aligned_trimmed.fasta -n Gene1.tree```
-
+With model testing:\
+```iqtree -s Gene1_aligned_trimmed.fasta -m MFP -T 4 -B 1000```
+- ```-m MFP``` performs model testing followed by tree search
 ## 9. Species trees
 ### Coalescence
 1) Concatenate trees\
@@ -90,6 +93,7 @@ The following alignments were excluded after visual inspection using Geneious:
 ```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
 2) Build concatenated species tree\
 ```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# autoMRE -k -s concatenated.out -n raxml_concatenated.tree```
+- ```autoMRE``` argument for extended majority-rule criterion for stopping bootstrapping after a sufficient number of replicates had been sampled 
 3) Root the tree\
 ```pxrr -t raxml_concatenated.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > raxml_concatenated_rooted.tree```
 
