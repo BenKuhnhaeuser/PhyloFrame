@@ -71,7 +71,7 @@ The following alignments were excluded after visual inspection using Geneious:
 
 ## 8. Gene trees
 ### Without model testing
-```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# 1000 -k -s Gene1_aligned_trimmed.fasta -n Gene1.tree```\
+```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# 1000 -k -s Gene1_aligned_trimmed.fasta -n Gene1.tree```
 ### With model testing
 ```iqtree -s Gene1_aligned_trimmed.fasta -m MFP -T 4 -B 1000```
 - ```-m MFP``` performs model testing followed by tree search
