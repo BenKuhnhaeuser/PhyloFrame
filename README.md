@@ -1,5 +1,5 @@
 # PhyloFrame_Calamoideae
-Code for phylogenomic analyses in Kuhnhäuser et al. 2020 "A robust phylogenomic framework for the calamoid palms"
+Scripts for phylogenomic analyses in Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palms, Molecular Phylogenetics and Evolution.
 
 Notes:
 - Software versions are specified in the methods section of the paper
