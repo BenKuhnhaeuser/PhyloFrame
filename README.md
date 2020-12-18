@@ -1,4 +1,4 @@
-# PhyloFrame_Calamoideae
+# PhyloFrame
 Scripts for phylogenomic analyses in Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palms, Molecular Phylogenetics and Evolution.
 
 Notes:
