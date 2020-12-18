@@ -2,7 +2,6 @@
 Scripts for phylogenomic analyses in Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palms, Molecular Phylogenetics and Evolution.
 
 Notes:
-- Software versions are specified in the methods section of the paper
 - Exemplary workflow for taxon "Calamoid1" and exon "Gene1"
 - Identical parameters used for exons and supercontigs
 
