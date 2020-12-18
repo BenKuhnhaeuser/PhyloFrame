@@ -83,6 +83,7 @@ Notes:
 ```pxrr -t astral.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > astral_rooted.tree```
 
 ### Concatenation
+#### Without partitioning
 1) Concatenate individual gene alignments\
 ```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
 2) Build concatenated species tree\
@@ -90,6 +91,38 @@ Notes:
 - ```autoMRE``` argument for extended majority-rule criterion for stopping bootstrapping after a sufficient number of replicates had been sampled 
 3) Root the tree\
 ```pxrr -t raxml_concatenated.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > raxml_concatenated_rooted.tree```
+
+#### With partitioning
+1) Concatenate individual gene alignments\
+```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
+2) Perform PartitionFinder analysis\
+```partitionfinder-2.1.1/PartitionFinder.py partitioned_analysis --raxml```\
+Directory ```partitioned_analysis``` contains:\
+- concatenated alignment in phylyp format
+- configuration file ```partition_finder.cfg``` with partitions file from ```AMAS concat``` output in DATA BLOCKS:
+```
+## ALIGNMENT FILE ##
+alignment = concatenated.phy;
+
+## BRANCHLENGTHS: linked | unlinked ##
+branchlengths = linked;
+
+## MODELS OF EVOLUTION: all | allx | mrbayes | beast | gamma | gammai | <list> ##
+models = GTR+G;
+
+# MODEL SELECCTION: AIC | AICc | BIC #
+model_selection = aicc;
+
+## DATA BLOCKS: see manual for how to define ##
+[data_blocks]
+p1_EGU105032175_supercontig_aligned_trimmed_sites_seq = 1-675;
+...
+p945_HEY989_supercontig_aligned_trimmed_sites_seq = 1942327-1943739;
+
+## SCHEMES, search: all | user | greedy | rcluster | rclusterf | kmeans ##
+[schemes]
+search = rcluster;
+```
 
 ## 10. Comparative analyses
 ### Tree comparisons
