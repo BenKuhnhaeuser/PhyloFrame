@@ -69,6 +69,7 @@ Notes:
 ### With model testing
 ```iqtree -s Gene1_aligned_trimmed.fasta -m MFP -T 4 -B 1000```
 - ```-m MFP``` performs model testing followed by tree search
+
 ## 9. Species trees
 ### Coalescence
 1) Concatenate trees\
@@ -123,6 +124,9 @@ p945_HEY989_supercontig_aligned_trimmed_sites_seq = 1942327-1943739;
 [schemes]
 search = rcluster;
 ```
+- Copy RAxML partitions from output file "best_scheme.txt" to file "partitions_partitionfinder.txt" as input for RAxML analyses
+3) Partitioned RAxML analysis 
+```raxmlHPC-PTHREADS -T 22 -m GTRGAMMA -f a -p 12345 -x 12345 -# autoMRE -k -s concatenated.out -n raxml_supercontigs_concatenated_partitioned_partitionfinder_autoMRE.tree -q partitions_partitionfinder.txt```
 
 ## 10. Comparative analyses
 ### Tree comparisons
