@@ -1,5 +1,5 @@
 # PhyloFrame
-Included here are scripts to replicate phylogenomic analyses in:
+Scripts to replicate phylogenomic analyses in:
 
 Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palms, Molecular Phylogenetics and Evolution.
 
@@ -8,6 +8,7 @@ Raw sequence data are deposited in the European Nucleotide Archive of the Europe
 Notes:
 - Exemplary workflow for taxon "Calamoid1" and exon "Gene1"
 - Identical parameters used for exons and supercontigs
+- Version numbers of software used can be found in the publication
 
 ## 1. Quality control of sequence data
 ```fastqc Calamoid1_R*_001.fastq --extract```
