@@ -1,5 +1,9 @@
 # PhyloFrame
-Scripts for phylogenomic analyses in Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palms, Molecular Phylogenetics and Evolution. Raw sequence data are deposited in the European Nucleotide Archive of the European Bioinformatics Institute (https://www.ebi.ac.uk/ena) under project number PRJEB40689. The PhyloPalm target file and alignments, gene trees, and species trees resulting from the analyses detailed here are deposited on Zenodo (https://doi.org/10.5281/zenodo.4359280).
+Included here are scripts to replicate phylogenomic analyses in:\
+
+Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palms, Molecular Phylogenetics and Evolution.\
+
+Raw sequence data are deposited in the European Nucleotide Archive of the European Bioinformatics Institute (https://www.ebi.ac.uk/ena) under project number PRJEB40689. The PhyloPalm target file and alignments, gene trees, and species trees resulting from the analyses detailed here are deposited on Zenodo (https://doi.org/10.5281/zenodo.4359280).
 
 Notes:
 - Exemplary workflow for taxon "Calamoid1" and exon "Gene1"
