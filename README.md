@@ -135,10 +135,10 @@ search = rcluster;
 
 ## 10. Comparative analyses
 ### Tree comparisons
-#### Load R libraries:\
+#### Load R libraries:
 ```library(ape)```\
-```library(phangorn)```\
-#### Read in trees:\
+```library(phangorn)```
+#### Read in trees:
 ```coal_e <- read.tree("Calamoideae_coalescence_exons_rooted.tree")```\
 ```coal_em <- read.tree("Calamoideae_coalescence_exons_models_rooted.tree")```\
 ```coal_s <- read.tree("Calamoideae_coalescence_supercontigs_rooted.tree")```\
