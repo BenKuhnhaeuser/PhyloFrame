@@ -134,23 +134,23 @@ Load R libraries:\
 ```library(ape)```\
 ```library(phangorn)```
 Read in trees:\
-```concat_genes <- read.tree("concat_genes.tree")```\
-```concat_super <- read.tree("concat_supercontigs.tree")```\
-```astral_genes <- read.tree("astral_genes.tree")```\
-```astral_super <- read.tree("astral_supercontigs.tree")```
+```coal_e <- read.tree("Calamoideae_coalescence_exons_rooted.tree")```\
+```coal_em <- read.tree("Calamoideae_coalescence_exons_models_rooted.tree")```\
+```coal_s <- read.tree("Calamoideae_coalescence_supercontigs_rooted.tree")```\
+```coal_sm <- read.tree("Calamoideae_coalescence_supercontigs_models_rooted.tree")```\
+```concat_e <- read.tree("Calamoideae_concatenation_exons_rooted.tree")```\
+```concat_ep <- read.tree("Calamoideae_concatenation_exons_partitioned_rooted.tree")```\
+```concat_s <- read.tree("Calamoideae_concatenation_supercontigs_rooted.tree")```\
+```concat_sp <- read.tree("Calamoideae_concatenation_supercontigs_partitioned_rooted.tree")```
 
 #### Strict consensus of species trees
-```consensus_all <- consensus(concat_genes, concat_super, astral_genes, astral_super)```\
-```plot.phylo(consensus_all, cex = 0.7)```\
-```write.tree(consensus_all, file = "consensus_all.tree")```
+```cons <- consensus(coal_e, coal_em, coal_s, coal_sm, concat_e, concat_ep, concat_s, concat_sp)```\
+```plot.phylo(cons, cex = 0.7)```\
+```write.tree(cons, file = "consensus_all.tree")```
 
 #### Normalized Robinson Foulds distances
-```RF.dist(concat_genes, concat_super, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```\
-```RF.dist(concat_genes, astral_genes, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```\
-```RF.dist(concat_genes, astral_super, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```\
-```RF.dist(concat_super, astral_genes, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```\
-```RF.dist(concat_super, astral_super, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```\
-```RF.dist(astral_genes, astral_super, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```
+```all_trees <- c(coal_e, coal_em, coal_s, coal_sm, concat_e, concat_ep, concat_s, concat_sp)```\
+```RF.dist(all_trees, check.labels = TRUE, normalize = TRUE, rooted = TRUE)```
 
 ### Gene tree conflict
 Exemplary command for Calameae:\
@@ -166,5 +166,4 @@ Exemplary command for Calameae:\
 ```AMAS summary -f fasta -d dna -i alignment_genes_concatenated.out -o summary_alignment_genes_concatenated.txt```
 - For ingroup only: first remove outgroup from concatenated alignment\
 ```AMAS remove -x Asterogyne-martiana-SBL226 Kerriodoxa-elegans-MSL76 Nypa-fructicans-MSL30-S32 Ceroxylon-quindiuense-MSL17 -f fasta -d dna -i alignment_genes_concatenated.out```
-- For outgroup only: first remove ingroup\
-```AMAS remove -x Mauritia-carana-BKL072 Raphia-hookeri-BKL088 Raphia-monbuttorum-BKL090 Raphia-textilis-BKL085 Calamus-rheedei-BKL065 Plectocomiopsis-sp-nov-discolor-RBL178 Mauritiella-aculeata-BKL010 Calamus-calospathus-BKL011 Lepidocaryum-tenue-MSL75-S14 Oncocalamus-mannii-BKL080 Myrialepis-paradoxa-BKL015 Calamus-discolor-RBL122 Raphia-farinifera-MSL20-S18 Metroxylon-sagu-MSL36-S19 Eleiodoxa-conferta-MSL73-S5 Plectocomia-elongata-RBL210 Salacca-lophospatha-BKL250 Raphia-regalis-BKL061 Calamus-radiatus-BKL176 Plectocomiopsis-geminiflora-MSL74 Calamus-peregrinus-BKL057 Plectocomia-himalayana-BKL078 Mauritiella-armata-SBL558 Eugeissona-tristis-MSL52-S20 Calamus-ornatus-BKL092 Plectocomiopsis-mira-RBL352 Mauritia-flexuosa-MSL70 Calamus-ursinus-BKL042 Calamus-essigii-RBL130 Korthalsia-rostrata-RBL177 Laccosperma-opacum-MSL50 Pigafetta-filaris-MSL77-S28 Calamus-erectus-BKL037 Calamus-ciliaris-BKL028 Calamus-symphysipus-RBL089 Calamus-thysanolepis-BKL160 Eremospatha-laurentii-BKL002 Calamus-pedicellatus-RBL031 Eremospatha-wendlandiana-BKL087 Calamus-conirostris-RBL214 Calamus-zollingeri-RBL145 Calamus-aruensis-RBL231 Salacca-zalacca-BKL003 Calamus-subinermis-BKL018 Calamus-wailong-RBL021 Calamus-arborescens-RBL069 Calamus-harmandii-BKL025 Oncocalamus-tuleyi-BKL016 Raphia-sudanica-BKL044 Calamus-vitiensis-RBL211 Calamus-blumei-RBL084 Calamus-pseudoconcolor-RBL081 Calamus-usitatus-BKL019 Calamus-koordersianus-BKL031 Calamus-acanthophyllus-BKL024 Calamus-dumetosus-RBL215 Calamus-melanochaetes-RBL238 Calamus-pogonacanthus-BKL048 Calamus-rhabdocladus-RBL032 Korthalsia-jala-BKL014 Eugeissona-utilis-BKL081 Calamus-godefroyi-BKL128 Salacca-affinis-BKL055 Calamus-oxleyanus-BKL033 Calamus-compsostachys-RBL028 Laccosperma-secundiflorum-RBL066 Calamus-castaneus-RBL220 Korthalsia-rigida-RBL038 Calamus-acanthochlamys-RBL017 Pigafetta-elata-BKL084 Calamus-sabut-RBL024 Salacca-secunda-BKL077 Metroxylon-salomonense-BKL060 Calamus-deerratus-RBL242 Korthalsia-robusta-BKL083 -f fasta -d dna -i alignment_genes_concatenated.out```
+- For outgroup only: first remove ingroup (by listing all ingroup taxa; analogous to "ingroup only" analysis)
