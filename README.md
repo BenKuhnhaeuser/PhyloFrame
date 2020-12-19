@@ -103,7 +103,7 @@ Notes:
 ```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
 2) Perform PartitionFinder analysis\
 ```partitionfinder-2.1.1/PartitionFinder.py partitioned_analysis --raxml```\
-Directory ```partitioned_analysis``` contains:\
+Directory ```partitioned_analysis``` contains:
 - concatenated alignment in phylyp format
 - configuration file ```partition_finder.cfg``` with partitions file from ```AMAS concat``` output in DATA BLOCKS:
 ```
