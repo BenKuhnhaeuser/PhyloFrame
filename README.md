@@ -132,7 +132,7 @@ search = rcluster;
 ### Tree comparisons
 Load R libraries:\
 ```library(ape)```\
-```library(phangorn)```
+```library(phangorn)```\
 Read in trees:\
 ```coal_e <- read.tree("Calamoideae_coalescence_exons_rooted.tree")```\
 ```coal_em <- read.tree("Calamoideae_coalescence_exons_models_rooted.tree")```\
