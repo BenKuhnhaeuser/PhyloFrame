@@ -6,7 +6,7 @@ Kuhnhäuser et al. (2021), A robust phylogenomic framework for the calamoid palm
 Raw sequence data are deposited in the European Nucleotide Archive of the European Bioinformatics Institute (https://www.ebi.ac.uk/ena) under project number PRJEB40689. The PhyloPalm target file and alignments, gene trees, and species trees resulting from the analyses detailed here are deposited on Zenodo (https://doi.org/10.5281/zenodo.4359280).
 
 Notes:
-- Exemplary workflow for taxon "Calamoid1" and exon "Gene1"
+- Exemplary workflow for taxon "Calamoid1" and locus "Gene1"
 - Identical parameters used for exons and supercontigs
 - Version numbers of software used can be found in the publication
 
@@ -61,7 +61,7 @@ Notes:
 ```mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
 
 ### Trim alignments
-1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction:\
+1) Use automated1 algorithm in trimAl, which is optimized for ML phylogeny reconstruction\
 ```trimal -in Gene1_aligned.fasta -out Gene1_aligned_trimmed_temp1.fasta -automated1```
 2) Remove sites with >=80% gaps from automated1-trimmed alignment\
 ```trimal -in Gene1_aligned_trimmed_temp1.fasta -out Gene1_aligned_trimmed_temp2.fasta -gt 0.2```
