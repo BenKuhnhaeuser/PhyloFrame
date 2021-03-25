@@ -99,12 +99,14 @@ Notes:
 ```pxrr -t raxml_concatenated.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > raxml_concatenated_rooted.tree```
 
 #### With partitioning
-1) Concatenate individual gene alignments\
-```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```
+1) Concatenate individual gene alignments and convert to phylip format\
+```AMAS concat -i Gene*_aligned_trimmed.fasta -f fasta -d dna -c 1```\
+```AMAS convert -d dna -f fasta -i concatenated.out -u phylip```\
+```mv concatenated.out-out.phy concatenated.phy```
 2) Perform PartitionFinder analysis\
 ```partitionfinder-2.1.1/PartitionFinder.py partitioned_analysis --raxml```\
 Directory ```partitioned_analysis``` contains:
-- concatenated alignment in phylyp format
+- concatenated alignment
 - configuration file ```partition_finder.cfg``` with partitions file from ```AMAS concat``` output in DATA BLOCKS:
 ```
 ## ALIGNMENT FILE ##
