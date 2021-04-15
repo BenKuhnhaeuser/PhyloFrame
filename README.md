@@ -85,7 +85,7 @@ Notes:
 ```nw_ed allTrees_ts.tree 'i & b<=10' o > allTrees_ts_bs10.tree```
 4) Build coalescence species tree\
 ```java -jar astral.5.6.3.jar -i allTrees_ts_bs10.tree -o astral.tree```
-5) Root the tree
+5) Root the tree\
 ```pxrr -t astral.tree -g Nypa-fructicans-MSL30-S32,Kerriodoxa-elegans-MSL76,Asterogyne-martiana-SBL226,Ceroxylon-quindiuense-MSL17 -s > astral_rooted.tree```
 
 ### Concatenation
