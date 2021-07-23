@@ -17,7 +17,7 @@ Notes:
 ## 2. Remove adapters and low-quality reads
 ```java -jar trimmomatic-0.38.jar PE -threads 16 -phred33 -basein Calamoid1_R1_001.fastq Calamoid1_R1_001_Tpaired.fastq Calamoid1_R1_001_Tunpaired.fastq Calamoid1_R2_001_Tpaired.fastq Calamoid1_R2_001_Tunpaired.fastq ILLUMINACLIP:Trimmomatic-0.38/adapters/TruSeq3-PE-2.fa:2:30:10:1:true LEADING:3 TRAILING:3 MAXINFO:40:0.8 MINLEN:36```
 - ```ILLUMINACLIP``` is used for removing adapters specified in the file "TruSeq3-PE-2.fa"
-- ```LEADING:3``` and ```TRAILING:3``` removes trimming aretacts, which are indicated by very low Phred scores
+- ```LEADING:3``` and ```TRAILING:3``` removes trimming arefacts, which are indicated by very low Phred scores
 - ```MAXINFO``` balances benefits of retaining longer reads against costs of retaining bases with errors
 - ```MINLEN``` sets minimum allowed length for reads
 
