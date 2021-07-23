@@ -32,7 +32,7 @@ Notes:
 3) Produce exon list\
 ```for f in *.FNA; do (echo ${f/.FNA} >> genenames.txt); done```
 
-## 5. Retrieve supercontigs
+## 4. Retrieve supercontigs
 1) Retrieve introns\
 ```python HybPiper/intronerate.py --prefix Calamoid1```\
 ```python HybPiper/retrieve_sequences.py PhyloPalm.fasta . intron```
@@ -40,7 +40,7 @@ Notes:
 2) Retrieve supercontigs (combining exons and introns)\
 ```python HybPiper/retrieve_sequences.py PhyloPalm.fasta . supercontig```
 
-## 6. Exclude paralogs from analysis
+## 5. Exclude paralogs from analysis
 ### Identify paralogs
 1) Write paralogs to individual file for the taxon\
 ```python HybPiper/paralog_investigator.py Calamoid1 2> Calamoid1_paralogs.txt```
@@ -56,7 +56,7 @@ Notes:
 ### Make ortholog list (= genes - paralogs)
 ```grep -Fv -f paralogs.txt genenames.txt > orthologs.txt``` creates new ortholog list excluding paralogs
 
-## 7. Multiple sequence alignment
+## 6. Multiple sequence alignment
 ### Align genes individually
 ```mafft --thread 4 --localpair --adjustdirectionaccurately --maxiterate 1000 Gene1.FNA > Gene1_aligned.fasta```
 
@@ -68,14 +68,14 @@ Notes:
 3) Remove sequences covering less than 10 % of the alignment length\
 ```trimal -in Gene1_aligned_trimmed_temp2.fasta -out Gene1_aligned_trimmed.fasta -resoverlap 0.50 -seqoverlap 10```
 
-## 8. Gene trees
+## 7. Gene trees
 ### Without model testing
 ```raxmlHPC-PTHREADS -T 3 -m GTRGAMMA -f a -p 12345 -x 12345 -# 1000 -k -s Gene1_aligned_trimmed.fasta -n Gene1.tree```
 ### With model testing
 ```iqtree -s Gene1_aligned_trimmed.fasta -m MFP -T 4 -B 1000```
 - ```-m MFP``` performs model testing followed by tree search
 
-## 9. Species trees
+## 8. Species trees
 ### Coalescence
 1) Concatenate trees\
 ```cat RAxML_bipartitions.Gene*.tree > allTrees.tree```
@@ -135,7 +135,7 @@ search = rcluster;
 3) Partitioned RAxML analysis 
 ```raxmlHPC-PTHREADS -T 22 -m GTRGAMMA -f a -p 12345 -x 12345 -# autoMRE -k -s concatenated.out -n raxml_supercontigs_concatenated_partitioned_partitionfinder_autoMRE.tree -q partitions_partitionfinder.txt```
 
-## 10. Comparative analyses
+## 9. Comparative analyses
 ### Tree comparisons
 #### Load R libraries:
 ```library(ape)```\
@@ -163,7 +163,7 @@ search = rcluster;
 Exemplary command for Calameae:\
 ```docker run -v DiscoVista-master/:/data esayyari/discovista discoVista.py -p calamoideae/ -m 5 -a calamoideae/annotation_calameae.txt -o calamoideae/results/calameae -g Outgroup```
 
-## 11. Statistics
+## 10. Statistics
 ### Targeted sequencing
 ```python HybPiper/get_seq_lengths.py PhyloPalm.fasta namelist.txt dna > seqlengths_genes.txt```\
 ```python HybPiper/hybpiper_stats.py seqlengths_genes.txt namelist.txt > seqlengths_genes_stats.txt```
